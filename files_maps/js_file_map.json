@@ -10,5 +10,9 @@
     "groupeUtilisateurs": {
         "1": "/main.js",
         "2": "/groupeUtilisateurs.js"
+    },
+    "donnees": {
+        "1": "/main.js",
+        "2": "/donnees.js"
     }
 }

@@ -10,5 +10,9 @@
     "groupeUtilisateurs": {
         "1": "/main.css",
         "2": "/groupeUtilisateurs.css"
+    },
+    "donnees": {
+        "1": "/main.css",
+        "2": "/donnees.css"
     }
 }
