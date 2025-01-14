@@ -6,5 +6,9 @@
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"
+    },
+    "groupeUtilisateurs": {
+        "1": "/main.js",
+        "2": "/groupeUtilisateurs.js"
     }
 }
