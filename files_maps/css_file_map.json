@@ -1,0 +1,10 @@
+{
+    "default": {},
+    "index": {
+        "1": "/main.css"
+    },
+    "utilisateurs": {
+        "1": "/main.css",
+        "2": "utilisateurs.css"
+    }
+}

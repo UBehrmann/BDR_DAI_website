@@ -1,0 +1,11 @@
+{
+    "default": {},
+    "index": {
+        "1": "/main.js",
+        "2": "/index.js"
+    },
+    "utilisateurs": {
+        "1": "/main.js",
+        "2": "/utilisateurs.js"
+    }
+}

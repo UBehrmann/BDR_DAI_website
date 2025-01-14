@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des utilisateurs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    #/components/header.html#
+    
+    <h1>Gestion des utilisateurs</h1>
+    <form id="userForm">
+        <label for="userSelect">Sélectionner un utilisateur :</label>
+        <select id="userSelect">
+            <option value="">-- Sélectionner --</option>
+        </select>
+
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" required>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" required>
+
+        <label for="rue">Rue :</label>
+        <input type="text" id="rue">
+
+        <label for="noRue">Numéro de rue :</label>
+        <input type="text" id="noRue">
+
+        <label for="npa">NPA :</label>
+        <input type="text" id="npa">
+
+        <label for="lieu">Lieu :</label>
+        <input type="text" id="lieu">
+
+        <label for="dateNaissance">Date de naissance :</label>
+        <input type="date" id="dateNaissance">
+
+        <label for="nomUtilisateur">Nom d'utilisateur :</label>
+        <input type="text" id="nomUtilisateur" required>
+
+        <label for="motDePasse">Mot de passe :</label>
+        <input type="password" id="motDePasse">
+
+        <label for="statutCompte">Statut du compte :</label>
+        <input type="text" id="statutCompte">
+
+        <label for="derniereConnexionDate">Dernière connexion (Date) :</label>
+        <input type="date" id="derniereConnexionDate">
+
+        <label for="derniereConnexionHeure">Dernière connexion (Heure) :</label>
+        <input type="time" id="derniereConnexionHeure">
+
+        <div>
+            <button type="button" id="addBtn">Ajouter</button>
+            <button type="button" id="updateBtn">Mettre à jour</button>
+            <button type="button" id="deleteBtn">Supprimer</button>
+        </div>
+    </form>
+
+    <div id="result">
+        <h3>Résultat :</h3>
+        <pre id="output">Aucun résultat pour l'instant.</pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
