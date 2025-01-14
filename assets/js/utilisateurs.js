@@ -117,4 +117,4 @@ function getUserData() {
 }
 
 // Load users on page load
-loadUsers();
+document.addEventListener("DOMContentLoaded", loadUsers);
