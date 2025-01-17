@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-    const apiUrl = "https://172.201.218.98/api/utilisateurs";
+    const apiUrl = "https://ub-dai.duckdns.org/api/utilisateurs";
     const userSelect = document.getElementById("userSelect");
     const output = document.getElementById("output");
 

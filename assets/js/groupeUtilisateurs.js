@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const apiUrlGroups = "https://172.201.218.98/api/groupes"; // URL de l'API pour les groupes
-    const apiUrlUsers = "https://172.201.218.98/api/utilisateurs"; // URL de l'API pour les utilisateurs
-    const apiUrlGroupUsers = "https://172.201.218.98/api/groupes/utilisateurs"; // URL pour ajouter et supprimer des utilisateurs dans un groupe
+    const apiUrlGroups = "https://ub-dai.duckdns.org/api/groupes"; // URL de l'API pour les groupes
+    const apiUrlUsers = "https://ub-dai.duckdns.org/api/utilisateurs"; // URL de l'API pour les utilisateurs
+    const apiUrlGroupUsers = "https://ub-dai.duckdns.org/api/groupes/utilisateurs"; // URL pour ajouter et supprimer des utilisateurs dans un groupe
 
     const groupSelect = document.getElementById("groupSelect");
     const adminSelect = document.getElementById("administrateur");
