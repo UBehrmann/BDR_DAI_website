@@ -1,7 +1,8 @@
 {
     "default": {},
     "index": {
-        "1": "/main.css"
+        "1": "/main.css",
+        "2": "/index.css"
     },
     "utilisateurs": {
         "1": "/main.css",
