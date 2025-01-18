@@ -1,40 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .main-header {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.menu {
     display: flex;
     gap: 20px;
 }
 
-.menu ul li {
-    display: inline;
-}
-
-.menu ul li a {
-    text-decoration: none;
-    color: white;
+.menu button {
+    background-color: white;
+    color: #007bff;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-.menu ul li a:hover {
-    text-decoration: underline;
+.menu button:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
 }
 
-.user-container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 20px auto;
-    text-align: left;
+.menu button:active {
+    background-color: #004494;
+    color: white;
+    border-color: #004494;
+}
+
+.menu button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
