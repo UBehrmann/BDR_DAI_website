@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (result === "Utilisateur trouvé") {
                 // Stocke simplement un indicateur d'authentification
                 localStorage.setItem("user", username);
-                window.location.href = "home.html"; // Redirige vers la page d'accueil
+                window.location.href = "groupes"; // Redirige vers la page d'accueil
             } else {
                 throw new Error("Réponse inattendue du serveur.");
             }
