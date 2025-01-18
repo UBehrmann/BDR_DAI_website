@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiBaseUrl = "http://ub-dai.duckdns.org/api/utilisateurs";
+    const apiBaseUrl = "https://ub-dai.duckdns.org/api/utilisateurs";
     const loginForm = document.getElementById("loginForm");
     const errorMessage = document.getElementById("errorMessage");
 
