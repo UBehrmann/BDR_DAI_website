@@ -18,36 +18,47 @@
     <div class="user-container">
         <h1>Informations de l'utilisateur</h1>
         <form id="userForm">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" required>
-
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" required>
-
+            <div class="row">
+                <div>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+            </div>
+        
             <label for="rue">Rue</label>
             <input type="text" id="rue" name="rue">
-
-            <label for="noRue">N° Rue</label>
-            <input type="text" id="noRue" name="noRue">
-
-            <label for="npa">NPA</label>
-            <input type="text" id="npa" name="npa">
-
+        
+            <div class="row">
+                <div>
+                    <label for="noRue">N° Rue</label>
+                    <input type="text" id="noRue" name="noRue">
+                </div>
+                <div>
+                    <label for="npa">NPA</label>
+                    <input type="text" id="npa" name="npa">
+                </div>
+            </div>
+        
             <label for="lieu">Lieu</label>
             <input type="text" id="lieu" name="lieu">
-
+        
             <label for="dateNaissance">Date de naissance</label>
             <input type="date" id="dateNaissance" name="dateNaissance">
-
+        
             <label for="statutCompte">Statut du compte</label>
             <input type="text" id="statutCompte" name="statutCompte" disabled>
-
+        
             <label for="derniereConnexion">Dernière connexion</label>
             <input type="text" id="derniereConnexion" name="derniereConnexion" disabled>
-
+        
             <button type="submit">Mettre à jour</button>
             <p id="message" class="info-message"></p>
         </form>
+        
     </div>
 
 </body>
