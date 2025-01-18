@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiBaseUrl = "https://ub-dai.duckdns.org/api/utilisateurs";
+    const apiBaseUrl = "http://ub-dai.duckdns.org/api/utilisateurs";
     const loginForm = document.getElementById("loginForm");
     const errorMessage = document.getElementById("errorMessage");
 
@@ -27,9 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("Une erreur est survenue. Veuillez réessayer.");
             }
 
-            const data = await response.json();
-            localStorage.setItem("user", JSON.stringify(data)); // Stocke les données utilisateur
-            window.location.href = "home.html"; // Redirige vers la page d'accueil
+            const result = await response.text(); // Récupère la réponse en texte brut
+
+            if (result === "Utilisateur trouvé") {
+                // Stocke simplement un indicateur d'authentification
+                localStorage.setItem("user", username);
+                window.location.href = "home.html"; // Redirige vers la page d'accueil
+            } else {
+                throw new Error("Réponse inattendue du serveur.");
+            }
         } catch (error) {
             errorMessage.textContent = error.message;
             errorMessage.style.display = "block";
