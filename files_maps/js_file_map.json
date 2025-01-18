@@ -12,6 +12,10 @@
         "1": "/main.js",
         "2": "/groupes.js"
     },
+    "groupe": {
+        "1": "/main.js",
+        "2": "/groupe.js"
+    },
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"

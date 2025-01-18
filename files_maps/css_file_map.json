@@ -12,6 +12,10 @@
         "1": "/main.css",
         "2": "/groupes.css"
     },
+    "groupe":{
+        "1": "/main.css",
+        "2": "/groupe.css"
+    },
     "utilisateurs": {
         "1": "/main.css",
         "2": "/utilisateurs.css"

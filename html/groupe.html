@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupe</title>
+    <link rel="stylesheet" href="groupe.css">
+    <script src="groupe.js"></script>
+</head>
+<body>
+    
+    #/components/header.html#
+
+    <div class="group-details-container">
+        <h1 id="groupName">Détails du Groupe</h1>
+
+        <div id="groupInfo">
+            <h2>Informations du Groupe</h2>
+            <p id="groupAdmin">Administrateur : </p>
+            <p id="groupDateCreation">Date de création : </p>
+        </div>
+
+        <div id="groupUsers">
+            <h2>Utilisateurs du Groupe</h2>
+            <ul id="userList">
+                <!-- Liste des utilisateurs affichée ici -->
+            </ul>
+            <div id="adminActions">
+                <h3>Ajouter un utilisateur</h3>
+                <form id="addUserForm">
+                    <label for="newUserName">Nom d'utilisateur</label>
+                    <input type="text" id="newUserName" required>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="sensorGroups">
+            <h2>Groupes de Capteurs</h2>
+            <ul id="sensorGroupList">
+                <!-- Liste des groupes de capteurs -->
+            </ul>
+            <div id="adminSensorActions">
+                <h3>Ajouter un groupe de capteurs</h3>
+                <form id="addSensorGroupForm">
+                    <label for="sensorGroupName">Nom</label>
+                    <input type="text" id="sensorGroupName" required>
+                    <label for="sensorGroupDescription">Description</label>
+                    <input type="text" id="sensorGroupDescription" required>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
