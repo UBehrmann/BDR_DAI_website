@@ -1,0 +1,55 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilisateur</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="Utilisateur.css">
+    <script src="Utilisateur.js"></script>
+</head>
+
+<body>
+
+    #/components/header.html#
+
+    <div class="user-container">
+        <h1>Informations de l'utilisateur</h1>
+        <form id="userForm">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="rue">Rue</label>
+            <input type="text" id="rue" name="rue">
+
+            <label for="noRue">N° Rue</label>
+            <input type="text" id="noRue" name="noRue">
+
+            <label for="npa">NPA</label>
+            <input type="text" id="npa" name="npa">
+
+            <label for="lieu">Lieu</label>
+            <input type="text" id="lieu" name="lieu">
+
+            <label for="dateNaissance">Date de naissance</label>
+            <input type="date" id="dateNaissance" name="dateNaissance">
+
+            <label for="statutCompte">Statut du compte</label>
+            <input type="text" id="statutCompte" name="statutCompte" disabled>
+
+            <label for="derniereConnexion">Dernière connexion</label>
+            <input type="text" id="derniereConnexion" name="derniereConnexion" disabled>
+
+            <button type="submit">Mettre à jour</button>
+            <p id="message" class="info-message"></p>
+        </form>
+    </div>
+
+</body>
+
+</html>

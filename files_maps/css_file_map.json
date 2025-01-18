@@ -4,6 +4,10 @@
         "1": "/main.css",
         "2": "/index.css"
     },
+    "Utilisateur": {
+        "1": "/main.css",
+        "2": "/Utilisateur.css"
+    },
     "utilisateurs": {
         "1": "/main.css",
         "2": "/utilisateurs.css"

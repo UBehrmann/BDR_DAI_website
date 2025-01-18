@@ -4,6 +4,10 @@
         "1": "/main.js",
         "2": "/index.js"
     },
+    "Utilisateur": {
+        "1": "/main.js",
+        "2": "/Utilisateur.js"
+    },
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"
