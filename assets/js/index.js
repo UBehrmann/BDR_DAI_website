@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Vérifie si l'utilisateur est déjà connecté
     const userData = localStorage.getItem("user");
     if (userData) {
-        window.location.href = "home.html"; // Redirige vers la page d'accueil si déjà connecté
+        window.location.href = "groupes"; // Redirige vers la page d'accueil si déjà connecté
     }
 
     loginForm.addEventListener("submit", async (e) => {
