@@ -8,6 +8,10 @@
         "1": "/main.js",
         "2": "/utilisateur.js"
     },
+    "groupes": {
+        "1": "/main.js",
+        "2": "/groupes.js"
+    },
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"
