@@ -16,13 +16,13 @@
         "1": "/main.js",
         "2": "/groupe.js"
     },
-    "groupesCapteur": {
+    "groupesCapteurs": {
         "1": "/main.js",
-        "2": "/groupesCapteur.js"
+        "2": "/groupesCapteurs.js"
     },
-    "groupeCapteur": {
+    "groupeCapteurs": {
         "1": "/main.js",
-        "2": "/groupeCapteur.js"
+        "2": "/groupeCapteurs.js"
     },
     "utilisateurs": {
         "1": "/main.js",

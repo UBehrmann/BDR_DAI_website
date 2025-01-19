@@ -16,13 +16,13 @@
         "1": "/main.css",
         "2": "/groupe.css"
     },
-    "groupesCapteur": {
+    "groupesCapteurs": {
         "1": "/main.css",
-        "2": "/groupesCapteur.css"
+        "2": "/groupesCapteurs.css"
     },
-    "groupeCapteur": {
+    "groupeCapteurs": {
         "1": "/main.css",
-        "2": "/groupeCapteur.css"
+        "2": "/groupeCapteurs.css"
     },
     "utilisateurs": {
         "1": "/main.css",
