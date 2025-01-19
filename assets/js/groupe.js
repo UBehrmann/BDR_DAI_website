@@ -132,6 +132,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Supprime le groupe
+    deleteGroupButton.addEventListener("click", async () => {
+        if (!confirm("Êtes-vous sûr de vouloir supprimer ce groupe ? Cette action est irréversible.")) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                alert("Groupe supprimé avec succès.");
+                window.location.href = "groupes"; // Redirige vers la liste des groupes
+            } else {
+                throw new Error("Erreur lors de la suppression du groupe.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    });
+
     // Charger les données initiales
     loadGroupDetails();
 });
