@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(`${apiBaseUrl}/groupes/utilisateurs`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nomUtilisateur: newUserName, nomGroupe: groupName }),
+                body: JSON.stringify({ utilisateur: newUserName, groupe: groupName }),
             });
 
             if (response.ok) {
