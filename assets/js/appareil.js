@@ -18,11 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!response.ok) throw new Error("Impossible de charger les données de l'appareil.");
             const data = await response.json();
 
-            const labels = data.map(point => new Date(...point.timestamp).toLocaleString());
-            const values = data.map(point => point.valeurs);
+            const seriesData = {};
+            data.forEach(point => {
+                const serieId = point.serieId;
+                if (!seriesData[serieId]) {
+                    seriesData[serieId] = { labels: [], values: [] };
+                }
+                seriesData[serieId].labels.push(new Date(...point.timestamp).toLocaleString());
+                seriesData[serieId].values.push(point.valeurs);
+            });
 
             deviceName.textContent = `Appareil : ${deviceIp}`;
-            createChart(labels, values);
+            createChart(seriesData);
         } catch (error) {
             console.error(error);
             alert("Erreur lors du chargement des données de l'appareil.");
@@ -54,22 +61,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Crée un graphique
-    function createChart(labels, values) {
+    // Crée un graphique avec plusieurs séries
+    function createChart(seriesData) {
+        const datasets = Object.keys(seriesData).map(serieId => ({
+            label: `Série ${serieId}`,
+            data: seriesData[serieId].values,
+            borderColor: getRandomColor(),
+            backgroundColor: "transparent",
+            borderWidth: 2,
+            tension: 0.3,
+        }));
+
         new Chart(ctx, {
             type: "line",
             data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: "Points de données",
-                        data: values,
-                        borderColor: "#007bff",
-                        backgroundColor: "rgba(0,123,255,0.2)",
-                        borderWidth: 2,
-                        tension: 0.3,
-                    },
-                ],
+                labels: seriesData[Object.keys(seriesData)[0]].labels,
+                datasets: datasets,
             },
             options: {
                 responsive: true,
@@ -95,6 +102,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             },
         });
+    }
+
+    // Génère une couleur aléatoire
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     // Charger les données et séries au démarrage
