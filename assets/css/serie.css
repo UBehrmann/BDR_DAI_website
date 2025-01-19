@@ -12,3 +12,35 @@ canvas {
     max-width: 100%;
     margin: 20px 0;
 }
+
+.series-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.series-chart-container {
+    margin-bottom: 30px;
+}
+
+.series-stats-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.series-stats-container h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.series-stats-container p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}

@@ -3,8 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const seriesId = new URLSearchParams(window.location.search).get("id");
     const seriesName = document.getElementById("seriesName");
     const ctx = document.getElementById("seriesChart").getContext("2d");
+    const statAverage = document.getElementById("statAverage");
+    const statMin = document.getElementById("statMin");
+    const statMedian = document.getElementById("statMedian");
+    const statMax = document.getElementById("statMax");
 
-    // Vérifie si l'ID de la série est présent dans l'URL
     if (!seriesId) {
         alert("ID de la série manquant dans l'URL.");
         window.location.href = "appareils"; // Redirige vers la page des appareils
@@ -14,28 +17,35 @@ document.addEventListener("DOMContentLoaded", () => {
     // Charge les données pour le graphique
     async function loadSeriesData() {
         try {
-            const response = await fetch(`${apiBaseUrl}/${seriesId}/points/limit`, {
-                method: "GET",
-            });
-
-            if (!response.ok) {
-                throw new Error("Impossible de charger les données de la série.");
-            }
-
+            const response = await fetch(`${apiBaseUrl}/${seriesId}/points/limit`);
+            if (!response.ok) throw new Error("Impossible de charger les données de la série.");
             const data = await response.json();
 
-            // Prépare les données pour le graphique
             const labels = data.map(point => new Date(...point.timestamp).toLocaleString());
             const values = data.map(point => point.valeurs);
 
-            // Met à jour le nom de la série
             seriesName.textContent = `Série ID: ${seriesId}`;
-
-            // Crée le graphique
             createChart(labels, values);
         } catch (error) {
             console.error(error);
             alert("Erreur lors du chargement des données de la série.");
+        }
+    }
+
+    // Charge les statistiques
+    async function loadSeriesStats() {
+        try {
+            const response = await fetch(`${apiBaseUrl}/${seriesId}/statistics/limit`);
+            if (!response.ok) throw new Error("Impossible de charger les statistiques de la série.");
+            const stats = await response.json();
+
+            statAverage.textContent = `Moyenne : ${stats.average.toFixed(2)}`;
+            statMin.textContent = `Minimum : ${stats.min.toFixed(2)}`;
+            statMedian.textContent = `Médiane : ${stats.median.toFixed(2)}`;
+            statMax.textContent = `Maximum : ${stats.max.toFixed(2)}`;
+        } catch (error) {
+            console.error(error);
+            alert("Erreur lors du chargement des statistiques.");
         }
     }
 
@@ -82,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Charger les données de la série au démarrage
+    // Charger les données et statistiques au démarrage
     loadSeriesData();
+    loadSeriesStats();
 });

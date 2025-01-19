@@ -12,9 +12,20 @@
     
     #/components/header.html#
 
-    <div class="series-chart-container">
+    <div class="series-container">
         <h1 id="seriesName">Série</h1>
-        <canvas id="seriesChart"></canvas>
+
+        <div class="series-chart-container">
+            <canvas id="seriesChart"></canvas>
+        </div>
+
+        <div class="series-stats-container">
+            <h2>Statistiques</h2>
+            <p id="statAverage">Moyenne : </p>
+            <p id="statMin">Minimum : </p>
+            <p id="statMedian">Médiane : </p>
+            <p id="statMax">Maximum : </p>
+        </div>
     </div>
 
 </body>
