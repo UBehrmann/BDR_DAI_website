@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const addUserForm = document.getElementById("addUserForm");
 
     if (!username || !groupName) {
-        window.location.href = "index.html"; // Redirige si non connecté ou groupe invalide
+        window.location.href = "index"; // Redirige si non connecté ou groupe invalide
         return;
     }
 

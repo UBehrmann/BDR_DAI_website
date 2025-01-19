@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Charge les groupes de l'utilisateur
     async function loadGroups() {
         try {
-            const response = await fetch(`${apiBaseUrl}/${username}`, {
+            const response = await fetch(`${apiBaseUrl}/utilisateur/${username}`, {
                 method: "GET",
             });
 
