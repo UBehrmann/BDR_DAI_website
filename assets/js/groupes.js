@@ -61,7 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ nom: groupName }),
+                body: JSON.stringify({
+                    nom: groupName,
+                    administrateur: username, // Inclut l'utilisateur connecté comme administrateur
+                }),
             });
 
             if (response.status === 201) {
