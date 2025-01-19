@@ -1,25 +1,39 @@
-.device-series-container {
+.device-container {
+    max-width: 800px;
+    margin: 20px auto;
     background-color: #ffffff;
-    padding: 30px 40px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    margin: 20px auto;
-    text-align: left;
+    padding: 30px;
+}
+
+.device-chart-container {
+    margin-bottom: 30px;
+}
+
+.device-series-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+    color: #333;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
-    margin-bottom: 20px;
 }
 
 ul li {
+    margin-bottom: 10px;
+    background-color: #ffffff;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -11,11 +11,18 @@
     
     #/components/header.html#
 
-    <div class="device-series-container">
-        <h1 id="deviceName">Appareil : </h1>
-        <ul id="seriesList">
-            <!-- Liste des séries affichée ici -->
-        </ul>
+    <div class="device-container">
+        <div class="device-chart-container">
+            <h1 id="deviceName">Appareil : </h1>
+            <canvas id="deviceChart"></canvas>
+        </div>
+
+        <div class="device-series-container">
+            <h2>Séries Disponibles</h2>
+            <ul id="seriesList">
+                <!-- Liste des séries affichée ici -->
+            </ul>
+        </div>
     </div>
 
 </body>
