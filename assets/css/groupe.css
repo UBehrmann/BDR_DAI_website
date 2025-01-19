@@ -10,6 +10,7 @@
 
 h1, h2, h3 {
     color: #333;
+    margin-bottom: 15px;
 }
 
 ul {
@@ -24,6 +25,9 @@ ul li {
     border-radius: 5px;
     margin-bottom: 10px;
     background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 ul li:hover {
@@ -38,6 +42,7 @@ label {
     font-size: 14px;
     margin-bottom: 5px;
     color: #555;
+    display: block;
 }
 
 input, select {
@@ -46,6 +51,19 @@ input, select {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 14px;
+}
+
+select {
+    appearance: none;
+    background: #ffffff url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="%23555"/></svg>') no-repeat right 10px center;
+    background-size: 10px 10px;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
 button {
@@ -57,14 +75,34 @@ button {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+button:active {
+    background-color: #004494;
 }
 
 .info-message {
     text-align: center;
     font-size: 14px;
     margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.info-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.info-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }

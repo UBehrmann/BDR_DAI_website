@@ -2,12 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiBaseUrl = "https://ub-dai.duckdns.org/api";
     const groupName = new URLSearchParams(window.location.search).get("group");
     const username = localStorage.getItem("user");
-    const groupInfo = document.getElementById("groupInfo");
     const userList = document.getElementById("userList");
-    const adminActions = document.getElementById("adminActions");
+    const sensorGroupList = document.getElementById("sensorGroupList");
+    const userSelect = document.getElementById("userSelect");
+    const sensorGroupSelect = document.getElementById("sensorGroupSelect");
     const addUserForm = document.getElementById("addUserForm");
+    const addSensorGroupForm = document.getElementById("addSensorGroupForm");
 
-    // Vérifie si l'utilisateur est connecté et si le groupe est spécifié dans l'URL
     if (!username || !groupName) {
         window.location.href = "index"; // Redirige vers la page de connexion si non connecté ou groupe invalide
         return;
@@ -16,37 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Charge les détails du groupe
     async function loadGroupDetails() {
         try {
-            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}`, {
-                method: "GET",
-            });
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}`);
             if (!response.ok) throw new Error("Impossible de charger les détails du groupe.");
             const groupData = await response.json();
 
-            // Remplit les informations du groupe
             document.getElementById("groupName").textContent = `Groupe : ${groupData.nom}`;
             document.getElementById("groupAdmin").textContent = `Administrateur : ${groupData.administrateur}`;
             document.getElementById("groupDateCreation").textContent = `Date de création : ${groupData.dateCreation.join("-")}`;
 
-            // Vérifie si l'utilisateur est administrateur
-            if (groupData.administrateur !== username) {
-                adminActions.style.display = "none"; // Cache les actions admin si l'utilisateur n'est pas admin
-            }
-
-            // Affiche les utilisateurs du groupe
+            // Liste des utilisateurs
             userList.innerHTML = "";
             groupData.utilisateurs.forEach((user) => {
                 const li = document.createElement("li");
                 li.textContent = user;
-
-                if (groupData.administrateur === username) {
-                    // Ajoute un bouton pour supprimer un utilisateur (visible uniquement pour l'admin)
-                    const removeButton = document.createElement("button");
-                    removeButton.textContent = "Supprimer";
-                    removeButton.classList.add("remove-button");
-                    removeButton.onclick = () => removeUser(user);
-                    li.appendChild(removeButton);
-                }
-
                 userList.appendChild(li);
             });
         } catch (error) {
@@ -55,72 +38,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Supprime un utilisateur du groupe
-    async function removeUser(userName) {
+    // Charge les utilisateurs dans le combobox
+    async function loadUsers() {
         try {
-            const response = await fetch(`${apiBaseUrl}/groupes/utilisateurs/${groupName}/${userName}`, {
-                method: "DELETE",
-            });
+            const response = await fetch(`${apiBaseUrl}/utilisateurs`);
+            if (!response.ok) throw new Error("Impossible de charger les utilisateurs.");
+            const users = await response.json();
 
-            if (response.ok) {
-                alert("Utilisateur supprimé avec succès.");
-                loadGroupDetails(); // Recharge les détails du groupe après suppression
-            } else {
-                throw new Error("Erreur lors de la suppression de l'utilisateur.");
-            }
+            users.forEach((user) => {
+                const option = document.createElement("option");
+                option.value = user.nomUtilisateur;
+                option.textContent = user.nomUtilisateur;
+                userSelect.appendChild(option);
+            });
         } catch (error) {
             console.error(error);
-            alert(error.message);
+            alert("Erreur lors du chargement des utilisateurs.");
         }
     }
 
-    // Crée un nouveau groupe
-    async function createGroup() {
+    // Charge les groupes de capteurs dans le combobox
+    async function loadSensorGroups() {
         try {
-            const groupNameInput = prompt("Entrez le nom du groupe");
-            if (!groupNameInput) {
-                alert("Le nom du groupe est requis.");
-                return;
-            }
+            const response = await fetch(`${apiBaseUrl}/groupe-capteurs`);
+            if (!response.ok) throw new Error("Impossible de charger les groupes de capteurs.");
+            const sensorGroups = await response.json();
 
-            const currentDate = new Date().toISOString().split("T")[0]; // Formate la date en AAAA-MM-JJ
-            const response = await fetch(`${apiBaseUrl}/groupes`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    nom: groupNameInput,
-                    dateCreation: currentDate,
-                    administrateur: username,
-                }),
+            sensorGroups.forEach((group) => {
+                const option = document.createElement("option");
+                option.value = group.id;
+                option.textContent = group.nom;
+                sensorGroupSelect.appendChild(option);
             });
-
-            if (response.ok) {
-                alert("Groupe créé avec succès !");
-                window.location.href = `groupe.html?group=${encodeURIComponent(groupNameInput)}`;
-            } else {
-                throw new Error("Erreur lors de la création du groupe.");
-            }
         } catch (error) {
             console.error(error);
-            alert(error.message);
+            alert("Erreur lors du chargement des groupes de capteurs.");
         }
     }
 
     // Ajoute un utilisateur au groupe
     addUserForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const newUserName = document.getElementById("newUserName").value;
+        const selectedUser = userSelect.value;
 
         try {
             const response = await fetch(`${apiBaseUrl}/groupes/utilisateurs`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ utilisateur: newUserName, groupe: groupName }),
+                body: JSON.stringify({ utilisateur: selectedUser, groupe: groupName }),
             });
 
             if (response.ok) {
                 alert("Utilisateur ajouté avec succès.");
-                loadGroupDetails(); // Recharge les détails du groupe après ajout
+                loadGroupDetails(); // Recharge les détails du groupe
             } else {
                 throw new Error("Erreur lors de l'ajout de l'utilisateur.");
             }
@@ -130,6 +100,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Charge les détails du groupe au démarrage
+    // Ajoute un groupe de capteurs au groupe
+    addSensorGroupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const selectedGroup = sensorGroupSelect.value;
+
+        try {
+            const response = await fetch(`${apiBaseUrl}/groupe-capteurs/${selectedGroup}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: selectedGroup, groupe: groupName }),
+            });
+
+            if (response.ok) {
+                alert("Groupe de capteurs ajouté avec succès.");
+                loadGroupDetails();
+            } else {
+                throw new Error("Erreur lors de l'ajout du groupe de capteurs.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    });
+
+    // Charger les données initiales
     loadGroupDetails();
+    loadUsers();
+    loadSensorGroups();
 });
