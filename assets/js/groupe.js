@@ -74,6 +74,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Crée un nouveau groupe
+    async function createGroup() {
+        try {
+            const groupNameInput = prompt("Entrez le nom du groupe");
+            if (!groupNameInput) {
+                alert("Le nom du groupe est requis.");
+                return;
+            }
+
+            const currentDate = new Date().toISOString().split("T")[0]; // Formate la date en AAAA-MM-JJ
+            const response = await fetch(`${apiBaseUrl}/groupes`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nom: groupNameInput,
+                    dateCreation: currentDate,
+                    administrateur: username,
+                }),
+            });
+
+            if (response.ok) {
+                alert("Groupe créé avec succès !");
+                window.location.href = `groupe.html?group=${encodeURIComponent(groupNameInput)}`;
+            } else {
+                throw new Error("Erreur lors de la création du groupe.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
     // Ajoute un utilisateur au groupe
     addUserForm.addEventListener("submit", async (e) => {
         e.preventDefault();

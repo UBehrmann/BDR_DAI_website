@@ -24,6 +24,10 @@
         "1": "/main.css",
         "2": "/groupeCapteurs.css"
     },
+    "appareils": {
+        "1": "/main.css",
+        "2": "/appareils.css"
+    },
     "utilisateurs": {
         "1": "/main.css",
         "2": "/utilisateurs.css"

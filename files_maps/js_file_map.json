@@ -24,6 +24,10 @@
         "1": "/main.js",
         "2": "/groupeCapteurs.js"
     },
+    "appareils": {
+        "1": "/main.js",
+        "2": "/appareils.js"
+    },
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"
