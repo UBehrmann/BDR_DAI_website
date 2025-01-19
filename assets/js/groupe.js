@@ -7,15 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminActions = document.getElementById("adminActions");
     const addUserForm = document.getElementById("addUserForm");
 
+    // Vérifie si l'utilisateur est connecté et si le groupe est spécifié dans l'URL
     if (!username || !groupName) {
-        window.location.href = "index"; // Redirige si non connecté ou groupe invalide
+        window.location.href = "index"; // Redirige vers la page de connexion si non connecté ou groupe invalide
         return;
     }
 
     // Charge les détails du groupe
     async function loadGroupDetails() {
         try {
-            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}`);
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}`, {
+                method: "GET",
+            });
             if (!response.ok) throw new Error("Impossible de charger les détails du groupe.");
             const groupData = await response.json();
 
@@ -26,19 +29,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Vérifie si l'utilisateur est administrateur
             if (groupData.administrateur !== username) {
-                adminActions.style.display = "none";
+                adminActions.style.display = "none"; // Cache les actions admin si l'utilisateur n'est pas admin
             }
 
-            // Affiche les utilisateurs
+            // Affiche les utilisateurs du groupe
             userList.innerHTML = "";
             groupData.utilisateurs.forEach((user) => {
                 const li = document.createElement("li");
                 li.textContent = user;
 
                 if (groupData.administrateur === username) {
-                    // Bouton pour supprimer un utilisateur (visible seulement pour l'admin)
+                    // Ajoute un bouton pour supprimer un utilisateur (visible uniquement pour l'admin)
                     const removeButton = document.createElement("button");
                     removeButton.textContent = "Supprimer";
+                    removeButton.classList.add("remove-button");
                     removeButton.onclick = () => removeUser(user);
                     li.appendChild(removeButton);
                 }
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 alert("Utilisateur supprimé avec succès.");
-                loadGroupDetails();
+                loadGroupDetails(); // Recharge les détails du groupe après suppression
             } else {
                 throw new Error("Erreur lors de la suppression de l'utilisateur.");
             }
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 alert("Utilisateur ajouté avec succès.");
-                loadGroupDetails();
+                loadGroupDetails(); // Recharge les détails du groupe après ajout
             } else {
                 throw new Error("Erreur lors de l'ajout de l'utilisateur.");
             }

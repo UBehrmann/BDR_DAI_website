@@ -77,3 +77,25 @@ button:hover {
 .info-message.success {
     color: green;
 }
+
+.group-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.group-button:hover {
+    background-color: #0056b3;
+}
+
+.group-button:active {
+    background-color: #004494;
+}

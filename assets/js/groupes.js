@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Vérifie si l'utilisateur est connecté
     if (!username) {
-        window.location.href = "index.html"; // Redirige vers la page de connexion si non connecté
+        window.location.href = "index"; // Redirige vers la page de connexion si non connecté
         return;
     }
 
@@ -30,8 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
             groupList.innerHTML = ""; // Vide la liste des groupes
 
             groups.forEach((group) => {
+                // Crée un bouton pour chaque groupe
+                const button = document.createElement("button");
+                button.textContent = group.nom;
+                button.classList.add("group-button");
+                button.onclick = () => {
+                    // Redirige vers la page du groupe avec le nom en paramètre URL
+                    window.location.href = `groupe.html?group=${encodeURIComponent(group.nom)}`;
+                };
+
+                // Ajoute le bouton à la liste
                 const li = document.createElement("li");
-                li.textContent = group.nom;
+                li.appendChild(button);
                 groupList.appendChild(li);
             });
         } catch (error) {
