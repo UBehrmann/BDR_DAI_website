@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupes</title>
+    <link rel="stylesheet" href="groupeCapteur.css">
+    <script src="groupeCapteur.js"></script>
+</head>
+<body>
+
+    #/components/header.html#
+
+    <div class="sensor-group-container">
+        <h1 id="groupName">Détails du Groupe de Capteurs</h1>
+        <ul id="deviceList">
+            <!-- Liste des appareils affichée ici -->
+        </ul>
+
+        <div id="adminActions">
+            <h2>Ajouter un Capteur</h2>
+            <form id="addDeviceForm">
+                <label for="deviceId">ID du Capteur</label>
+                <input type="text" id="deviceId" required>
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>

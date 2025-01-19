@@ -16,6 +16,14 @@
         "1": "/main.js",
         "2": "/groupe.js"
     },
+    "groupesCapteur": {
+        "1": "/main.js",
+        "2": "/groupesCapteur.js"
+    },
+    "groupeCapteur": {
+        "1": "/main.js",
+        "2": "/groupeCapteur.js"
+    },
     "utilisateurs": {
         "1": "/main.js",
         "2": "/utilisateurs.js"
