@@ -28,6 +28,10 @@
         "1": "/main.css",
         "2": "/appareils.css"
     },
+    "appareil": {
+        "1": "/main.css",
+        "2": "/appareil.css"
+    },
     "utilisateurs": {
         "1": "/main.css",
         "2": "/utilisateurs.css"
