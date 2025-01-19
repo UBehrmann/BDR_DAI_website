@@ -25,26 +25,18 @@
             <ul id="userList">
                 <!-- Liste des utilisateurs affichée ici -->
             </ul>
-            <div id="adminActions">
-                <h3>Ajouter un utilisateur</h3>
-                <form id="addUserForm">
-                    <label for="userSelect">Utilisateur</label>
-                    <select id="userSelect" required></select>
-                    <button type="submit">Ajouter</button>
-                </form>
-            </div>
         </div>
 
-        <div id="sensorGroups">
-            <h2>Groupes de Capteurs</h2>
-            <ul id="sensorGroupList">
-                <!-- Liste des groupes de capteurs -->
+        <div id="groupDevices">
+            <h2>Appareils du Groupe</h2>
+            <ul id="deviceList">
+                <!-- Liste des appareils affichée ici -->
             </ul>
-            <div id="adminSensorActions">
-                <h3>Ajouter un groupe de capteurs</h3>
-                <form id="addSensorGroupForm">
-                    <label for="sensorGroupSelect">Groupe de Capteurs</label>
-                    <select id="sensorGroupSelect" required></select>
+            <div id="adminDeviceActions">
+                <h3>Ajouter un appareil</h3>
+                <form id="addDeviceForm">
+                    <label for="deviceIp">IP de l'appareil</label>
+                    <input type="text" id="deviceIp" required>
                     <button type="submit">Ajouter</button>
                 </form>
             </div>

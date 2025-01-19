@@ -3,11 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const groupName = new URLSearchParams(window.location.search).get("group");
     const username = localStorage.getItem("user");
     const userList = document.getElementById("userList");
-    const sensorGroupList = document.getElementById("sensorGroupList");
-    const userSelect = document.getElementById("userSelect");
-    const sensorGroupSelect = document.getElementById("sensorGroupSelect");
-    const addUserForm = document.getElementById("addUserForm");
-    const addSensorGroupForm = document.getElementById("addSensorGroupForm");
+    const deviceList = document.getElementById("deviceList");
+    const addDeviceForm = document.getElementById("addDeviceForm");
 
     if (!username || !groupName) {
         window.location.href = "index"; // Redirige vers la page de connexion si non connecté ou groupe invalide
@@ -30,93 +27,104 @@ document.addEventListener("DOMContentLoaded", () => {
             groupData.utilisateurs.forEach((user) => {
                 const li = document.createElement("li");
                 li.textContent = user;
+
+                // Bouton pour supprimer un utilisateur (visible uniquement pour l'admin)
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Supprimer";
+                removeButton.onclick = () => removeUser(user);
+                li.appendChild(removeButton);
+
                 userList.appendChild(li);
             });
+
+            // Charge les appareils du groupe
+            loadDevices();
         } catch (error) {
             console.error(error);
             alert("Erreur lors du chargement des détails du groupe.");
         }
     }
 
-    // Charge les utilisateurs dans le combobox
-    async function loadUsers() {
+    // Charge les appareils du groupe
+    async function loadDevices() {
         try {
-            const response = await fetch(`${apiBaseUrl}/utilisateurs`);
-            if (!response.ok) throw new Error("Impossible de charger les utilisateurs.");
-            const users = await response.json();
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}/appareils`);
+            if (!response.ok) throw new Error("Impossible de charger les appareils du groupe.");
+            const devices = await response.json();
 
-            users.forEach((user) => {
-                const option = document.createElement("option");
-                option.value = user.nomUtilisateur;
-                option.textContent = user.nomUtilisateur;
-                userSelect.appendChild(option);
+            deviceList.innerHTML = "";
+            devices.forEach((device) => {
+                const li = document.createElement("li");
+                li.textContent = `${device.nom} (${device.ip})`;
+
+                // Bouton pour supprimer un appareil
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Supprimer";
+                removeButton.onclick = () => removeDevice(device.ip);
+                li.appendChild(removeButton);
+
+                deviceList.appendChild(li);
             });
         } catch (error) {
             console.error(error);
-            alert("Erreur lors du chargement des utilisateurs.");
+            alert("Erreur lors du chargement des appareils.");
         }
     }
 
-    // Charge les groupes de capteurs dans le combobox
-    async function loadSensorGroups() {
+    // Supprime un utilisateur du groupe
+    async function removeUser(userName) {
         try {
-            const response = await fetch(`${apiBaseUrl}/groupe-capteurs`);
-            if (!response.ok) throw new Error("Impossible de charger les groupes de capteurs.");
-            const sensorGroups = await response.json();
-
-            sensorGroups.forEach((group) => {
-                const option = document.createElement("option");
-                option.value = group.id;
-                option.textContent = group.nom;
-                sensorGroupSelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error(error);
-            alert("Erreur lors du chargement des groupes de capteurs.");
-        }
-    }
-
-    // Ajoute un utilisateur au groupe
-    addUserForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const selectedUser = userSelect.value;
-
-        try {
-            const response = await fetch(`${apiBaseUrl}/groupes/utilisateurs`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ utilisateur: selectedUser, groupe: groupName }),
+            const response = await fetch(`${apiBaseUrl}/groupes/utilisateurs/${groupName}/${userName}`, {
+                method: "DELETE",
             });
 
             if (response.ok) {
-                alert("Utilisateur ajouté avec succès.");
-                loadGroupDetails(); // Recharge les détails du groupe
+                alert("Utilisateur supprimé avec succès.");
+                loadGroupDetails();
             } else {
-                throw new Error("Erreur lors de l'ajout de l'utilisateur.");
+                throw new Error("Erreur lors de la suppression de l'utilisateur.");
             }
         } catch (error) {
             console.error(error);
             alert(error.message);
         }
-    });
+    }
 
-    // Ajoute un groupe de capteurs au groupe
-    addSensorGroupForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const selectedGroup = sensorGroupSelect.value;
-
+    // Supprime un appareil du groupe
+    async function removeDevice(deviceIp) {
         try {
-            const response = await fetch(`${apiBaseUrl}/groupe-capteurs/${selectedGroup}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id: selectedGroup, groupe: groupName }),
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}/appareils/${deviceIp}`, {
+                method: "DELETE",
             });
 
             if (response.ok) {
-                alert("Groupe de capteurs ajouté avec succès.");
-                loadGroupDetails();
+                alert("Appareil supprimé avec succès.");
+                loadDevices();
             } else {
-                throw new Error("Erreur lors de l'ajout du groupe de capteurs.");
+                throw new Error("Erreur lors de la suppression de l'appareil.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
+    // Ajoute un appareil au groupe
+    addDeviceForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const deviceIp = document.getElementById("deviceIp").value;
+
+        try {
+            const response = await fetch(`${apiBaseUrl}/groupes/${groupName}/appareils/${deviceIp}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            if (response.ok) {
+                alert("Appareil ajouté avec succès.");
+                loadDevices();
+            } else {
+                throw new Error("Erreur lors de l'ajout de l'appareil.");
             }
         } catch (error) {
             console.error(error);
@@ -126,6 +134,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Charger les données initiales
     loadGroupDetails();
-    loadUsers();
-    loadSensorGroups();
 });
