@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.textContent = "Voir";
                 button.onclick = () => {
                     // Redirige vers la page appareil avec l'IP dans l'URL
-                    window.location.href = `appareil.html?ip=${encodeURIComponent(device.ip)}`;
+                    window.location.href = `appareil?ip=${encodeURIComponent(device.ip)}`;
                 };
 
                 li.appendChild(button);

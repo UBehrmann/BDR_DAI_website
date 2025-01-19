@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Crée un lien vers la page série
                 const link = document.createElement("a");
-                link.href = `serie.html?id=${encodeURIComponent(serie.id)}`;
+                link.href = `serie?id=${encodeURIComponent(serie.id)}`;
                 link.textContent = "Voir";
 
                 li.appendChild(link);
